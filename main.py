@@ -5,22 +5,18 @@ DIGIT = 3
 
 # 1. 0-9 사이의 중복되지 않는 난수 3가지를 골라서 정답을 생성
 
-answer0 = 0
-answer1 = 0
-answer2 = 0
+answers = [0] * DIGIT #[0, 0, 0]
 
 while True:
-    answer0 = random.randrange(0, MAX_NUMBER) # literal, hard-coded, magic number
-    answer1 = random.randrange(0, MAX_NUMBER)
-    answer2 = random.randrange(0, MAX_NUMBER)
+    for i in range(DIGIT):
+        answers[i] = random.randrange(0, MAX_NUMBER)
 
-    if answer0 != answer1 and answer1 != answer2 and answer2 != answer0:
+    if answers[0] != answers[1] and answers[1] != answers[2] and answers[2] != answers[0]:
         break
 
 print("[정답]")
-print(answer0, end=" ")
-print(answer1, end=" ")
-print(answer2, end=" ")
+for i in range(DIGIT):
+    print(answers[i], end=" ")
 
 tryCount = 0
 
@@ -29,14 +25,16 @@ while True:
 
     # 2. 사용자로부터 3개의 숫자(추측)을 입력 받음
     print("\r\n추측을 입력하세요.")
-    guess0 = int(input("[1] "))
-    guess1 = int(input("[2] "))
-    guess2 = int(input("[3] "))
+    guesses = [0] * DIGIT # [0, 0, 0]
+    for i in range(DIGIT):
+        inputMessage = "[{}] ".format(i + 1)
+        value = int(input(inputMessage))
+        guesses[i] = value
+        #guesses[i] = int(input("[{}}] ".format(i + 1)))
 
     print("[추측]")
-    print(guess0, end=" ")
-    print(guess1, end=" ")
-    print(guess2, end=" ")
+    for i in range(DIGIT):
+        print(guesses[i], end=" ")
 
 
     # 3. 정답과 추측을 비교하여 결과 판정
@@ -44,29 +42,16 @@ while True:
     ball = 0
     out = 0
 
-    # 3-1. guess0
-    if guess0 == answer0:
-        strike += 1 # strike = strike + 1
-    elif guess0 == answer1 or guess0 == answer2:
-        ball += 1
-    else:
-        out += 1
+    for i in range(DIGIT):
+        j = (i + 1) % DIGIT
+        k = (i + 2) % DIGIT
 
-    # 3-2. guess1
-    if guess1 == answer1:
-        strike += 1 # strike = strike + 1
-    elif guess1 == answer2 or guess1 == answer0:
-        ball += 1
-    else:
-        out += 1
-
-    # 3-3. guess2
-    if guess2 == answer2:
-        strike += 1 # strike = strike + 1
-    elif guess2 == answer0 or guess2 == answer1:
-        ball += 1
-    else:
-        out += 1
+        if guesses[i] == answers[i]:
+            strike += 1
+        elif guesses[i] == answers[j] or guesses[i] == answers[k]:
+            ball += 1
+        else:
+            out += 1
 
 
     # 4. 결과를 화면에 출력
