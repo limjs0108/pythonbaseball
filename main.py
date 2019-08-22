@@ -1,5 +1,8 @@
 import random
 
+MAX_NUMBER = 10 # constant
+DIGIT = 3
+
 # 1. 0-9 사이의 중복되지 않는 난수 3가지를 골라서 정답을 생성
 
 answer0 = 0
@@ -7,9 +10,9 @@ answer1 = 0
 answer2 = 0
 
 while True:
-    answer0 = random.randrange(0, 10)
-    answer1 = random.randrange(0, 10)
-    answer2 = random.randrange(0, 10)
+    answer0 = random.randrange(0, MAX_NUMBER) # literal, hard-coded, magic number
+    answer1 = random.randrange(0, MAX_NUMBER)
+    answer2 = random.randrange(0, MAX_NUMBER)
 
     if answer0 != answer1 and answer1 != answer2 and answer2 != answer0:
         break
@@ -71,8 +74,9 @@ while True:
 
 
     # 5. 추측이 결과와 다르면 2번 단계로 돌아가서 반복
-    if strike == 3:
+    if strike == DIGIT:
         break
+
 
 # 6. 정답을 맞추는데 소요된 횟수를 출력하고 종료
 print("[횟수] : {}".format(tryCount))
