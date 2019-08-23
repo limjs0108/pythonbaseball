@@ -4,6 +4,11 @@ from result import Result
 MAX_NUMBER = 10 # constant
 DIGIT = 3
 
+def printNumbers(prefix, numbers):
+    print(prefix)
+    for i in range(DIGIT):
+        print(numbers[i], end=" ")
+
 # 1. 0-9 사이의 중복되지 않는 난수 3가지를 골라서 정답을 생성
 
 answers = [0] * DIGIT #[0, 0, 0]
@@ -15,9 +20,7 @@ while True:
     if answers[0] != answers[1] and answers[1] != answers[2] and answers[2] != answers[0]:
         break
 
-print("[정답]")
-for i in range(DIGIT):
-    print(answers[i], end=" ")
+printNumbers("[정답]", answers)
 
 tryCount = 0
 
@@ -33,10 +36,7 @@ while True:
         guesses[i] = value
         #guesses[i] = int(input("[{}}] ".format(i + 1)))
 
-    print("[추측]")
-    for i in range(DIGIT):
-        print(guesses[i], end=" ")
-
+    printNumbers("[추측]", guesses)
 
     # 3. 정답과 추측을 비교하여 결과 판정
     result = Result()
