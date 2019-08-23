@@ -1,4 +1,5 @@
 import random
+from result import Result
 
 MAX_NUMBER = 10 # constant
 DIGIT = 3
@@ -38,28 +39,26 @@ while True:
 
 
     # 3. 정답과 추측을 비교하여 결과 판정
-    strike = 0
-    ball = 0
-    out = 0
+    result = Result()
 
     for i in range(DIGIT):
         j = (i + 1) % DIGIT
         k = (i + 2) % DIGIT
 
         if guesses[i] == answers[i]:
-            strike += 1
+            result.strike += 1
         elif guesses[i] == answers[j] or guesses[i] == answers[k]:
-            ball += 1
+            result.ball += 1
         else:
-            out += 1
+            result.out += 1
 
 
     # 4. 결과를 화면에 출력
-    print("\r\n[결과] S={} B={} O={}".format(strike, ball, out)) # [결과] S=1 B=2 O=0
+    print("\r\n[결과] S={} B={} O={}".format(result.strike, result.ball, result.out)) # [결과] S=1 B=2 O=0
 
 
     # 5. 추측이 결과와 다르면 2번 단계로 돌아가서 반복
-    if strike == DIGIT:
+    if result.strike == DIGIT:
         break
 
 
