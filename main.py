@@ -5,7 +5,6 @@ from result import Result
 # 1. 0-9 사이의 중복되지 않는 난수 3가지를 골라서 정답을 생성
 answer = Answer()
 answer.generate()
-#answers = generateAnswers()
 
 tryCount = 0
 

@@ -9,18 +9,18 @@ class Answer:
     '''
 
     def __init__(self):
-        self.numbers = [0] * DIGIT  # [0, 0, 0]
+        self.__numbers = [0] * DIGIT  # [0, 0, 0]
 
 
     def generate(self):
         while True:
             for i in range(DIGIT):
-                self.numbers[i] = random.randrange(0, MAX_NUMBER)
+                self.__numbers[i] = random.randrange(0, MAX_NUMBER)
 
-            if self.numbers[0] != self.numbers[1] and self.numbers[1] != self.numbers[2] and self.numbers[2] != self.numbers[0]:
+            if self.__numbers[0] != self.__numbers[1] and self.__numbers[1] != self.__numbers[2] and self.__numbers[2] != self.__numbers[0]:
                 break
 
-        printNumbers("[정답]", self.numbers)
+        printNumbers("[정답]", self.__numbers)
 
     def __getitem__(self, item):
         '''
@@ -28,4 +28,4 @@ class Answer:
         :param item:
         :return:
         '''
-        return self.numbers[item]
+        return self.__numbers[item]

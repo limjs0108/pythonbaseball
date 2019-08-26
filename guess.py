@@ -3,7 +3,7 @@ from number import printNumbers
 
 class Guess:
     def __init__(self):
-        self.numbers = [0] * DIGIT  # [0, 0, 0]
+        self.__numbers = [0] * DIGIT  # [0, 0, 0]
 
     def input(self):
         print("\r\n추측을 입력하세요.")
@@ -11,10 +11,10 @@ class Guess:
         for i in range(DIGIT):
             inputMessage = "[{}] ".format(i + 1)
             value = int(input(inputMessage))
-            self.numbers[i] = value
+            self.__numbers[i] = value
             # guesses[i] = int(input("[{}}] ".format(i + 1)))
 
-        printNumbers("[추측]", self.numbers)
+        printNumbers("[추측]", self.__numbers)
 
 
     def __getitem__(self, item):
@@ -23,4 +23,4 @@ class Guess:
         :param item:
         :return:
         '''
-        return self.numbers[item]
+        return self.__numbers[item]
