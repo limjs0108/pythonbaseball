@@ -1,9 +1,11 @@
-from answer import generateAnswers
-from guess import inputGuesses
+from answer import Answer
+from guess import Guess
 from result import Result
 
 # 1. 0-9 사이의 중복되지 않는 난수 3가지를 골라서 정답을 생성
-answers = generateAnswers()
+answer = Answer()
+answer.generate()
+#answers = generateAnswers()
 
 tryCount = 0
 
@@ -11,11 +13,13 @@ while True:
     tryCount += 1
 
     # 2. 사용자로부터 3개의 숫자(추측)을 입력 받음
-    guesses = inputGuesses()
+    guess = Guess()
+    guess.input()
+    #guesses = inputGuesses()
 
     # 3. 정답과 추측을 비교하여 결과 판정
     result = Result()
-    result.calculate(answers, guesses)
+    result.calculate(answer, guess)
 
     # 4. 결과를 화면에 출력
     result.print()

@@ -1,4 +1,6 @@
+from answer import Answer
 from contant import DIGIT
+from guess import Guess
 
 
 class Result:
@@ -14,14 +16,14 @@ class Result:
     def isCorrect(self):
         return self.strike == DIGIT
 
-    def calculate(self, answers, guesses):
+    def calculate(self, answer: Answer, guess: Guess):
         for i in range(DIGIT):
             j = (i + 1) % DIGIT
             k = (i + 2) % DIGIT
 
-            if guesses[i] == answers[i]:
+            if guess[i] == answer[i]:
                 self.strike += 1
-            elif guesses[i] == answers[j] or guesses[i] == answers[k]:
+            elif guess[i] == answer[j] or guess[i] == answer[k]:
                 self.ball += 1
             else:
                 self.out += 1
