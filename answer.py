@@ -22,8 +22,6 @@ class Answer:
 
         printNumbers("[정답]", self.numbers)
 
-        return self.numbers
-
     def __getitem__(self, item):
         '''
         [] 연산자를 재정의한다.
